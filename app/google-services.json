@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "587574247458",
+    "project_id": "shoppe-ea7de",
+    "storage_bucket": "shoppe-ea7de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587574247458:android:3fa556c04341834e9c0a7b",
+        "android_client_info": {
+          "package_name": "com.example.shoppe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587574247458-qqorp43l62352fvi6l01h37chfgjfius.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVJj3bcM_JeDqeNxxvCSxMK-EexDCZ_qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587574247458-qqorp43l62352fvi6l01h37chfgjfius.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
