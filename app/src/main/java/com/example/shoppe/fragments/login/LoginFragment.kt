@@ -13,8 +13,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.shoppe.R
 import com.example.shoppe.activities.ShoppingActivity
 import com.example.shoppe.databinding.FragmentLoginBinding
+import com.example.shoppe.dialog.setupBottomSheetDialog
 import com.example.shoppe.utils.Resource
 import com.example.shoppe.viewmodel.LoginViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -48,6 +50,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             tvHaveNoAccount.setOnClickListener {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
             }
+            tvForgotPassword.setOnClickListener {
+                setupBottomSheetDialog { email ->
+                    viewModel.resetPassword(email)
+                }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -74,7 +81,30 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     }
 
                     else -> Unit
+                }
+            }
+        }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.resetPassword.collect {
+                when (it) {
+                    is Resource.Success -> {
+                        Snackbar.make(
+                            requireView(),
+                            "Reset link was sent to your email",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is Resource.Error -> {
+                        Snackbar.make(
+                            requireView(),
+                            "Error: ${it.message.toString()}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+
+                    else -> Unit
                 }
             }
         }

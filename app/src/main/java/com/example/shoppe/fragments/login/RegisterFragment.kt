@@ -67,6 +67,7 @@ class RegisterFragment : Fragment() {
                         is Resource.Success -> {
                             Log.d(TAG, it.data.toString())
                             binding.buttonRegister.revertAnimation()
+                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
                         }
 
                         is Resource.Error -> {
@@ -75,7 +76,6 @@ class RegisterFragment : Fragment() {
                         }
 
                         else -> Unit
-
                     }
                 }
             }

@@ -20,4 +20,9 @@
     <string name="wrong_format_format">Wrong format</string>
     <string name="password_cannot_be_empty">Password cannot be empty</string>
     <string name="password_should_contains_6_char">Password should contains 6 char</string>
+    <string name="reset_password">Reset password</string>
+    <string name="reset_password_message">We will send you the password link to your email!</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="cancel">Cancel</string>
+    <string name="send">Send</string>
 </resources>
