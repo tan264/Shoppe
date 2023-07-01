@@ -72,6 +72,7 @@
         app:layout_constraintTop_toTopOf="@id/tvQuality" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonLoginAccountOptions"
         style="@style/whiteButtonStyle"
         android:layout_width="@dimen/smallButtonWidth"
         android:layout_height="@dimen/smallButtonHeight"

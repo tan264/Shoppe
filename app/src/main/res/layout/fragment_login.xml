@@ -86,7 +86,7 @@
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@id/edPasswordLogin" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/buttonLogin"
         style="@style/blueButtonStyle"
         android:layout_width="@dimen/smallButtonWidth"
@@ -95,7 +95,8 @@
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@id/tvForgotPassword" />
+        app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
+        app:spinning_bar_color="@color/white" />
 
     <ImageView
         android:id="@+id/facebookLogin"

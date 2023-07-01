@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.shoppe.data.User
 import com.example.shoppe.utils.RegisterValidation
 import com.example.shoppe.utils.Resource
@@ -49,6 +50,9 @@ class RegisterFragment : Fragment() {
                 val password = edPasswordRegister.text.toString()
 
                 viewModel.createAccountWithEmailAndPassword(user, password)
+            }
+            tvHaveAccount.setOnClickListener {
+                findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
             }
         }
 
