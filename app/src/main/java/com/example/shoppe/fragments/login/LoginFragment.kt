@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.shoppe.R
 import com.example.shoppe.activities.ShoppingActivity
@@ -58,53 +60,57 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.login.collect {
-                when (it) {
-                    is Resource.Loading -> {
-                        binding.buttonLogin.startAnimation()
-                    }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.login.collect {
+                    when (it) {
+                        is Resource.Loading -> {
+                            binding.buttonLogin.startAnimation()
+                        }
 
-                    is Resource.Success -> {
-                        binding.buttonLogin.revertAnimation()
-                        Intent(
-                            requireActivity(),
-                            ShoppingActivity::class.java
-                        ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                            .also { intent ->
-                                startActivity(intent)
-                            }
-                    }
+                        is Resource.Success -> {
+                            binding.buttonLogin.revertAnimation()
+                            Intent(
+                                requireActivity(),
+                                ShoppingActivity::class.java
+                            ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .also { intent ->
+                                    startActivity(intent)
+                                }
+                        }
 
-                    is Resource.Error -> {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                        binding.buttonLogin.revertAnimation()
-                    }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                            binding.buttonLogin.revertAnimation()
+                        }
 
-                    else -> Unit
+                        else -> Unit
+                    }
                 }
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.resetPassword.collect {
-                when (it) {
-                    is Resource.Success -> {
-                        Snackbar.make(
-                            requireView(),
-                            "Reset link was sent to your email",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.resetPassword.collect {
+                    when (it) {
+                        is Resource.Success -> {
+                            Snackbar.make(
+                                requireView(),
+                                "Reset link was sent to your email",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
 
-                    is Resource.Error -> {
-                        Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
+                        is Resource.Error -> {
+                            Snackbar.make(
+                                requireView(),
+                                "Error: ${it.message.toString()}",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
 
-                    else -> Unit
+                        else -> Unit
+                    }
                 }
             }
         }
