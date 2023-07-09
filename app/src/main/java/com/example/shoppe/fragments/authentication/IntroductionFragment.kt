@@ -1,4 +1,4 @@
-package com.example.shoppe.fragments.login
+package com.example.shoppe.fragments.authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.shoppe.activities.ShoppingActivity
 import com.example.shoppe.databinding.FragmentIntroductionBinding
-import com.example.shoppe.viewmodel.IntroductionViewModel
+import com.example.shoppe.viewmodels.IntroductionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.example.shoppe.fragments.login
+package com.example.shoppe.fragments.authentication
 
 import android.os.Bundle
 import android.view.LayoutInflater

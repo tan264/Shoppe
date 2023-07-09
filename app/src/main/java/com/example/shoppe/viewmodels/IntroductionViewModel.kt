@@ -1,7 +1,6 @@
-package com.example.shoppe.viewmodel
+package com.example.shoppe.viewmodels
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shoppe.utils.Constants
@@ -30,7 +29,6 @@ class IntroductionViewModel @Inject constructor(
         val user = firebaseAuth.currentUser
 
         if (user != null) {
-            Log.d("tan264", user.uid)
             viewModelScope.launch {
                 _navigate.emit(SHOPPING_ACTIVITY)
             }

@@ -1,4 +1,4 @@
-package com.example.shoppe.data
+package com.example.shoppe.models
 
 data class User(
     var firstName: String,

@@ -1,4 +1,4 @@
-package com.example.shoppe.fragments.login
+package com.example.shoppe.fragments.authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +17,7 @@ import com.example.shoppe.activities.ShoppingActivity
 import com.example.shoppe.databinding.FragmentLoginBinding
 import com.example.shoppe.dialog.setupBottomSheetDialog
 import com.example.shoppe.utils.Resource
-import com.example.shoppe.viewmodel.LoginViewModel
+import com.example.shoppe.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

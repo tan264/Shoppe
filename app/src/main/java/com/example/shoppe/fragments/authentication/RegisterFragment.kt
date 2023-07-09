@@ -1,4 +1,4 @@
-package com.example.shoppe.fragments.login
+package com.example.shoppe.fragments.authentication
 
 import android.os.Bundle
 import android.util.Log
@@ -12,11 +12,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.shoppe.data.User
+import com.example.shoppe.databinding.FragmentRegisterBinding
+import com.example.shoppe.models.User
 import com.example.shoppe.utils.RegisterValidation
 import com.example.shoppe.utils.Resource
-import com.example.shoppe.viewmodel.RegisterViewModel
-import com.example.shoppe.databinding.FragmentRegisterBinding
+import com.example.shoppe.viewmodels.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

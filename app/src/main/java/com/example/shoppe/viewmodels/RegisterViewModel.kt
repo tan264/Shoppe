@@ -1,8 +1,8 @@
-package com.example.shoppe.viewmodel
+package com.example.shoppe.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.shoppe.data.User
+import com.example.shoppe.models.User
 import com.example.shoppe.utils.Constants
 import com.example.shoppe.utils.RegisterFieldsState
 import com.example.shoppe.utils.RegisterValidation

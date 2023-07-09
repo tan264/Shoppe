@@ -22,7 +22,7 @@
             android:label="@string/title_activity_shopping"
             android:theme="@style/Theme.Shoppe" />
         <activity
-            android:name=".activities.LoginRegisterActivity"
+            android:name=".activities.AuthenticationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
