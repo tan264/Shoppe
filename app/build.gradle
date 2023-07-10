@@ -88,4 +88,7 @@ dependencies {
     // firebase
     implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
+
+    // An easy way to show animation load image
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

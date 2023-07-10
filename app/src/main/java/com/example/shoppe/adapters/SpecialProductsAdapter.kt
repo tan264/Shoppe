@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.shoppe.databinding.SpecialRvItemBinding
 import com.example.shoppe.models.Product
@@ -38,17 +39,29 @@ class SpecialProductsAdapter :
     override fun onBindViewHolder(holder: SpecialProductsViewHolder, position: Int) {
         val product = _differ.currentList[position]
         holder.bind(product)
+
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(product)
+        }
     }
 
     override fun getItemCount(): Int {
         return _differ.currentList.size
     }
 
+    var onClick: ((Product) -> Unit)? = null
+
     class SpecialProductsViewHolder(private val binding: SpecialRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.apply {
-                Glide.with(itemView).load(product.images[0]).into(imgSpecialItem)
+                Glide.with(itemView).load(product.images[0])
+                    .placeholder(CircularProgressDrawable(itemView.context).apply {
+                        strokeWidth = 5f
+                        centerRadius = 30f
+                    }.also {
+                        it.start()
+                    }).into(imgSpecialItem)
                 tvSpecialProductName.text = product.name
                 tvSpecialProductPrice.text = product.price.toString()
             }

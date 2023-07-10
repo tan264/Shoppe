@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppe.adapters.BestProductsAdapter
 import com.example.shoppe.databinding.FragmentBaseCategoryBinding
+import com.example.shoppe.fragments.shopping.HomeFragmentDirections
+import com.example.shoppe.utils.showBottomNavigationView
 
 open class BaseCategoryFragment : Fragment() {
     private var _binding: FragmentBaseCategoryBinding? = null
@@ -35,6 +38,22 @@ open class BaseCategoryFragment : Fragment() {
 
         setupOfferRecycleView()
         setupBestProductsRecycleView()
+
+        bestProductsAdapter.onClick = {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(
+                    it
+                )
+            )
+        }
+
+        offerAdapter.onClick = {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(
+                    it
+                )
+            )
+        }
 
         binding.rvOffer.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -86,5 +105,10 @@ open class BaseCategoryFragment : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = offerAdapter
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 }

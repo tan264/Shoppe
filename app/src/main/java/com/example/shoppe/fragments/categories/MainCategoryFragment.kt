@@ -12,13 +12,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shoppe.R
 import com.example.shoppe.adapters.BestDealsAdapter
 import com.example.shoppe.adapters.BestProductsAdapter
 import com.example.shoppe.adapters.SpecialProductsAdapter
 import com.example.shoppe.databinding.FragmentMainCategoryBinding
+import com.example.shoppe.fragments.shopping.HomeFragmentDirections
 import com.example.shoppe.utils.Resource
+import com.example.shoppe.utils.showBottomNavigationView
 import com.example.shoppe.viewmodels.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -29,7 +33,7 @@ class MainCategoryFragment : Fragment() {
     private var _binding: FragmentMainCategoryBinding? = null
     private val binding get() = _binding!!
 
-//    private val viewModel by viewModels<MainCategoryViewModel>() // make viewModelScope.launch{} behave incorrectly, fix in line 35 and 47
+    //    private val viewModel by viewModels<MainCategoryViewModel>() // make viewModelScope.launch{} behave incorrectly, fix in line 35 and 47
     private lateinit var viewModel: MainCategoryViewModel
 
     private lateinit var specialProductAdapter: SpecialProductsAdapter
@@ -53,6 +57,30 @@ class MainCategoryFragment : Fragment() {
         setupSpecialProductRecycleView()
         setupBestDealsRecycleView()
         setupBestProductsRecycleView()
+
+        specialProductAdapter.onClick = {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(
+                    it
+                )
+            )
+        }
+
+        bestDealsAdapter.onClick = {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(
+                    it
+                )
+            )
+        }
+
+        bestProductsAdapter.onClick = {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(
+                    it
+                )
+            )
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
@@ -145,6 +173,7 @@ class MainCategoryFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume")
+        showBottomNavigationView()
     }
 
     private fun hideLoading() {

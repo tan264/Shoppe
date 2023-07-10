@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.shoppe.databinding.BestDealsRvItemBinding
 import com.example.shoppe.models.Product
@@ -36,18 +37,30 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHold
     }
 
     override fun onBindViewHolder(holder: BestDealsViewHolder, position: Int) {
-        holder.bind(_differ.currentList[position])
+        val product = _differ.currentList[position]
+        holder.bind(product)
+
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(product)
+        }
     }
 
     override fun getItemCount(): Int {
         return _differ.currentList.size
     }
 
+    var onClick: ((Product) -> Unit)? = null
+
     class BestDealsViewHolder(private val binding: BestDealsRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.apply {
-                Glide.with(itemView).load(product.images[0]).into(imgBestDeal)
+                Glide.with(itemView).load(product.images[0]).placeholder(CircularProgressDrawable(itemView.context).apply {
+                    strokeWidth = 5f
+                    centerRadius = 30f
+                }.also {
+                    it.start()
+                }).into(imgBestDeal)
                 tvDealProductName.text = product.name
                 tvOldPrice.text = product.price.toString()
                 product.offerPercentage?.let {
