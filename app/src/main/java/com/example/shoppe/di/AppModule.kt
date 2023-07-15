@@ -2,8 +2,10 @@ package com.example.shoppe.di
 
 import android.app.Application
 import android.content.Context
+import com.example.shoppe.firebase.FirebaseCommon
 import com.example.shoppe.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
@@ -28,4 +30,11 @@ object AppModule {
     fun provideIntroductionSP(
         application: Application
     ) = application.getSharedPreferences(Constants.INTRODUCTION_SP, Context.MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    fun provideFirebaseCommon(
+        firestore: FirebaseFirestore,
+        auth: FirebaseAuth,
+    ) = FirebaseCommon(firestore, auth)
 }

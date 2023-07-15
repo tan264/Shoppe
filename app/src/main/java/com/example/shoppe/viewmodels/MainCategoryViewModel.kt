@@ -32,6 +32,7 @@ class MainCategoryViewModel @Inject constructor(
         fetchSpecialProducts()
         fetchBestDeals()
         fetchBestProducts()
+        Log.d(TAG, "ok")
     }
 
     fun fetchSpecialProducts() {
@@ -40,6 +41,7 @@ class MainCategoryViewModel @Inject constructor(
         }
         firestore.collection("Products").whereEqualTo("category", "Special Products").get()
             .addOnSuccessListener {
+                Log.d(TAG, "fetch special success")
                 val specialProductList = it.toObjects(Product::class.java)
                 viewModelScope.launch {
                     _specialProducts.emit(Resource.Success(specialProductList))
@@ -57,6 +59,7 @@ class MainCategoryViewModel @Inject constructor(
         }
         firestore.collection("Products").whereEqualTo("category", "Best Deals").get()
             .addOnSuccessListener {
+                Log.d(TAG, "fetch deal success")
                 val bestDealsList = it.toObjects(Product::class.java)
                 viewModelScope.launch {
                     _bestDeals.emit(Resource.Success(bestDealsList))
@@ -70,21 +73,18 @@ class MainCategoryViewModel @Inject constructor(
 
     fun fetchBestProducts() {
         if (!pagingInfo.isEnd) {
-            Log.d(TAG, "not end")
             viewModelScope.launch {
                 _bestProducts.emit(Resource.Loading())
-                Log.d(TAG, "fetch emit loading")
             }
             firestore.collection("Products").whereEqualTo("category", "Best Products")
                 .limit(pagingInfo.page * 10).get()
                 .addOnSuccessListener {
-                    Log.d(TAG, "onSuccessFetch")
+                    Log.d(TAG, "fetch best success")
                     val bestProductsList = it.toObjects(Product::class.java)
                     pagingInfo.isEnd = bestProductsList == pagingInfo.oldBesetProductsList
                     pagingInfo.oldBesetProductsList = bestProductsList
                     viewModelScope.launch {
                         _bestProducts.emit(Resource.Success(bestProductsList))
-                        Log.d(TAG, "fetch emit success")
                     }
                     pagingInfo.page++
                 }.addOnFailureListener {

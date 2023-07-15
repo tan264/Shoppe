@@ -55,12 +55,13 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHold
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.apply {
-                Glide.with(itemView).load(product.images[0]).placeholder(CircularProgressDrawable(itemView.context).apply {
-                    strokeWidth = 5f
-                    centerRadius = 30f
-                }.also {
-                    it.start()
-                }).into(imgBestDeal)
+                Glide.with(itemView).load(product.images[0])
+                    .placeholder(CircularProgressDrawable(itemView.context).apply {
+                        strokeWidth = 5f
+                        centerRadius = 30f
+                    }.also {
+                        it.start()
+                    }).into(imgBestDeal)
                 tvDealProductName.text = product.name
                 tvOldPrice.text = product.price.toString()
                 product.offerPercentage?.let {

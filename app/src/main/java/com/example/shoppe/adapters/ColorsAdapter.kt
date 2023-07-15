@@ -1,7 +1,6 @@
 package com.example.shoppe.adapters
 
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppe.databinding.ColorRvItemBinding
 
-class ColorsAdapter : RecyclerView.Adapter<ColorsAdapter.ColorsViewHolder>() {
+class ColorsAdapter(
+    private val onClick: ((Int) -> Unit)? = null,
+) : RecyclerView.Adapter<ColorsAdapter.ColorsViewHolder>() {
     inner class ColorsViewHolder(private val binding: ColorRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(color: Int, position: Int) {
@@ -45,6 +46,7 @@ class ColorsAdapter : RecyclerView.Adapter<ColorsAdapter.ColorsViewHolder>() {
     private val _differ = AsyncListDiffer(this, diffCallback)
     val differ = _differ
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorsViewHolder {
         return ColorsViewHolder(
             ColorRvItemBinding.inflate(
@@ -56,11 +58,16 @@ class ColorsAdapter : RecyclerView.Adapter<ColorsAdapter.ColorsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ColorsViewHolder, position: Int) {
-        holder.bind(differ.currentList[position], position)
+        val color = differ.currentList[position]
+        holder.bind(color, position)
 
         holder.itemView.setOnClickListener {
+            if (selectedPosition >= 0) {
+                notifyItemChanged(selectedPosition)
+            }
             selectedPosition = holder.adapterPosition
             notifyItemChanged(selectedPosition)
+            onClick?.invoke(color)
         }
     }
 

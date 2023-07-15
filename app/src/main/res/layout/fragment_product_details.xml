@@ -106,52 +106,22 @@
             app:layout_constraintStart_toStartOf="@id/line"
             app:layout_constraintTop_toBottomOf="@id/line">
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:orientation="vertical">-->
+            <TextView
+                android:id="@+id/tv_product_colors"
+                style="@style/h3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Colors"
+                android:textColor="@color/g_gray700"
+                app:layout_constraintStart_toStartOf="@id/layout_title_price"
+                app:layout_constraintTop_toBottomOf="@id/layout_title_price" />
 
-                <TextView
-                    android:id="@+id/tv_product_colors"
-                    style="@style/h3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/g_gray700"
-                    app:layout_constraintStart_toStartOf="@id/layout_title_price"
-                    app:layout_constraintTop_toBottomOf="@id/layout_title_price"
-                    android:text="Colors" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_colors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_colors"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:orientation="vertical">-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/tv_product_sizes"-->
-            <!--                    style="@style/h3"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_weight="1"-->
-            <!--                    android:textColor="@color/g_gray700"-->
-            <!--                    app:layout_constraintStart_toStartOf="@id/layout_title_price"-->
-            <!--                    app:layout_constraintTop_toBottomOf="@id/layout_title_price"-->
-            <!--                    tools:text="Sizes" />-->
-
-            <!--                <androidx.recyclerview.widget.RecyclerView-->
-            <!--                    android:id="@+id/rv_sizes"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content" />-->
-            <!--            </LinearLayout>-->
-
-<!--        </LinearLayout>-->
+        </LinearLayout>
 
         <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/button_add_to_cart"

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_colors_sizes"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_product_colors"
+        style="@style/h3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Colors" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_colors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/g_line" />
+
+    <TextView
+        android:id="@+id/tv_product_sizes"
+        style="@style/h3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sizes" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sizes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+        android:id="@+id/button_add_to_cart"
+        style="@style/blueButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smallButtonHeight"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="25dp"
+        android:text="Add to cart"
+        app:spinning_bar_color="@color/white" />
+
+</LinearLayout>

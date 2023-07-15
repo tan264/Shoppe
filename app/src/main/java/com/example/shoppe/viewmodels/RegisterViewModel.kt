@@ -26,6 +26,7 @@ class RegisterViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _register = MutableStateFlow<Resource<User>>(Resource.Unspecified())
+
     // val register: Flow<Resource<User>> = _register
     val register = _register.asStateFlow()
 

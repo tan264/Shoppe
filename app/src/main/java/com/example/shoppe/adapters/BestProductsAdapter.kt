@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.shoppe.databinding.ProductRvItemBinding
+import com.example.shoppe.helper.getProductPrice
 import com.example.shoppe.models.Product
 
 class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProductsViewHolder>() {
@@ -64,12 +65,12 @@ class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProduct
                     }).into(imgProduct)
                 tvName.text = product.name
                 tvPrice.text = product.price.toString()
-                product.offerPercentage?.let {
-                    if (it != 0f) {
-                        tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                        tvNewPrice.text =
-                            String.format("%.2f", product.price * (1f - it))
-                    }
+                if (product.offerPercentage != null && product.offerPercentage != 0f) {
+                    tvNewPrice.text = String.format(
+                        "$%.2f",
+                        product.offerPercentage.getProductPrice(product.price)
+                    )
+                    tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
             }
         }

@@ -1,7 +1,6 @@
 package com.example.shoppe.fragments.categories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.shoppe.R
 import com.example.shoppe.adapters.BestDealsAdapter
 import com.example.shoppe.adapters.BestProductsAdapter
 import com.example.shoppe.adapters.SpecialProductsAdapter
@@ -83,10 +81,8 @@ class MainCategoryFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                Log.d(TAG, "repeat Resumed")
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    Log.d(TAG, "collect special")
                     viewModel.specialProducts.collectLatest {
                         when (it) {
                             is Resource.Loading -> {
@@ -109,7 +105,6 @@ class MainCategoryFragment : Fragment() {
                 }
 
                 launch {
-                    Log.d(TAG, "collect best deals")
                     viewModel.bestDeals.collectLatest {
                         when (it) {
                             is Resource.Loading -> {
@@ -133,7 +128,6 @@ class MainCategoryFragment : Fragment() {
 
                 launch {
                     viewModel.bestProducts.collectLatest {
-                        Log.d(TAG, "collect best product")
                         when (it) {
                             is Resource.Loading -> {
                                 binding.progressBarBestProducts.visibility = View.VISIBLE
@@ -159,20 +153,13 @@ class MainCategoryFragment : Fragment() {
 
         binding.nestedScrollMainCategory.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
             if (v.getChildAt(0).bottom <= v.height + scrollY) {
-                Log.d(TAG, "end scroll")
                 viewModel.fetchBestProducts()
             }
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart")
-    }
-
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "onResume")
         showBottomNavigationView()
     }
 
