@@ -32,6 +32,8 @@ class CartFragment : Fragment() {
 
     private val viewModel by activityViewModels<CartViewModel>()
 
+    private var totalPrice = 0f
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,6 +62,20 @@ class CartFragment : Fragment() {
                     it.product
                 )
             )
+        }
+
+        binding.apply {
+            buttonCheckout.setOnClickListener {
+                findNavController().navigate(
+                    CartFragmentDirections.actionCartFragmentToBillingFragment(
+                        totalPrice,
+                        cartAdapter.differ.currentList.toTypedArray()
+                    )
+                )
+            }
+            imageCloseCart.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -96,6 +112,7 @@ class CartFragment : Fragment() {
                 launch {
                     viewModel.productsPrice.collectLatest { price ->
                         price?.let {
+                            totalPrice = it
                             binding.tvTotalPrice.text = String.format("$%.2f", it)
                         }
                     }

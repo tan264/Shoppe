@@ -40,6 +40,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:maxLines="1"
             app:layout_constraintStart_toEndOf="@id/image_cart_product"
             app:layout_constraintTop_toTopOf="@id/image_cart_product"
             tools:text="Chair" />

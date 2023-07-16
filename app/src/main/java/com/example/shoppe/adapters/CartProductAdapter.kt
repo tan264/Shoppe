@@ -84,6 +84,18 @@ class CartProductAdapter :
                             cartProduct.product.offerPercentage.getProductPrice(cartProduct.product.price)
                         )
                 }
+                tvProductCartPrice.text =
+                    if (cartProduct.product.offerPercentage != null && cartProduct.product.offerPercentage != 0f) {
+                        String.format(
+                            "$%.2f",
+                            cartProduct.product.offerPercentage.getProductPrice(cartProduct.product.price)
+                        )
+                    } else {
+                        String.format(
+                            "$%.2f",
+                            cartProduct.product.price
+                        )
+                    }
                 imageCartProductColor.setImageDrawable(
                     ColorDrawable(
                         cartProduct.selectedColor ?: Color.TRANSPARENT
