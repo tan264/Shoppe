@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shopping_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/allOrdersFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -73,4 +73,14 @@
             android:name="products"
             app:argType="com.example.shoppe.models.CartProduct[]" />
     </fragment>
+    <fragment
+        tools:layout="@layout/fragment_user_account"
+        android:id="@+id/userAccountFragment"
+        android:name="com.example.shoppe.fragments.settings.UserAccountFragment"
+        android:label="UserAccountFragment" />
+    <fragment
+        tools:layout="@layout/fragment_all_orders"
+        android:id="@+id/allOrdersFragment"
+        android:name="com.example.shoppe.fragments.settings.AllOrdersFragment"
+        android:label="AllOrdersFragment" />
 </navigation>
