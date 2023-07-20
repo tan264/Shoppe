@@ -42,6 +42,9 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
         val order = differ.currentList[position]
 
         holder.bind(order)
+        holder.itemView.setOnClickListener { _ ->
+            onClick?.let { it -> it(order) }
+        }
     }
 
     class OrderViewHolder(private val binding: OrderItemBinding) :

@@ -112,7 +112,8 @@ class BillingFragment : Fragment() {
                             is Resource.Success -> {
                                 binding.buttonPlaceOrder.revertAnimation()
                                 findNavController().navigateUp()
-                                Snackbar.make(view, "Your order was placed", Snackbar.LENGTH_SHORT).show()
+                                Snackbar.make(view, "Your order was placed", Snackbar.LENGTH_SHORT)
+                                    .show()
                             }
 
                             else -> Unit

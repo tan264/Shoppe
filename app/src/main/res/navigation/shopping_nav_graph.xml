@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shopping_nav_graph"
-    app:startDestination="@id/allOrdersFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -82,5 +82,18 @@
         tools:layout="@layout/fragment_all_orders"
         android:id="@+id/allOrdersFragment"
         android:name="com.example.shoppe.fragments.settings.AllOrdersFragment"
-        android:label="AllOrdersFragment" />
+        android:label="AllOrdersFragment" >
+        <action
+            android:id="@+id/action_allOrdersFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_order_detail"
+        android:id="@+id/orderDetailFragment"
+        android:name="com.example.shoppe.fragments.settings.OrderDetailFragment"
+        android:label="OrderDetailFragment" >
+        <argument
+            android:name="order"
+            app:argType="com.example.shoppe.models.order.Order" />
+    </fragment>
 </navigation>
