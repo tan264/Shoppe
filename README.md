@@ -2,4 +2,4 @@
 Coming soon ...
 
 # Demo
-![Demo](demo/demo.gif)
+<img src="/demo/demo.gif" width="360" height="740" />
